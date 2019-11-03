@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = "2.0.6.RELEASE"
+    }
+
+    repositories {
+	maven { url "http://platform-acceleration-lab-maven.s3.amazonaws.com" }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+		classpath "io.pivotal.pal.assignments:assignments-plugin:4.3.1"
+    }
+}
+
+
+plugins {
+    id "java"
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.pivotal.pal.assignments.plugin"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+	testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+}
+
+
+
+assignments {
+    apiUrl = "https://cognizant-waveland.education.pivotal.io"
+    emails = [
+       "jayapal.karuppanadar@cognizant.com"
+    ]
+    cohortIdentifier = "pcf-training"
+}
+
+bootRun.environment([
+    "WELCOME_MESSAGE": "Hello from Cloud Foundry",
+	"port":"8080",
+])
+
+test.environment([
+    "WELCOME_MESSAGE": "Hello from test",
+])
