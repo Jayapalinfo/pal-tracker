@@ -24,6 +24,8 @@ jobs:
         file: "build/libs/pal-tracker.jar"
         skip_cleanup: true
         overwrite: true
+        on:
+          branch: master
     - stage: deploy to cf
       language: bash
       script:
@@ -38,3 +40,4 @@ jobs:
         password: $CF_PASSWORD
         organization: $CF_ORG
         space: $CF_SPACE
+        overwrite: true
