@@ -19,8 +19,7 @@ public class TimeEntryController {
 
     public TimeEntryController(
             TimeEntryRepository timeEntriesRepo,
-            MeterRegistry meterRegistry
-    ) {
+            MeterRegistry meterRegistry) {
         this.timeEntriesRepo = timeEntriesRepo;
 
         timeEntrySummary = meterRegistry.summary("timeEntry.summary");
